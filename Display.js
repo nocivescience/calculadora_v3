@@ -11,7 +11,9 @@ class Display {
             dividir: '%',
             multiplicar: 'x',
             restar: '-', 
-        }
+            potencia: '**'
+        },
+        this.grados=5;
     }
 
     borrar() {
@@ -27,7 +29,7 @@ class Display {
     }
 
     computar(tipo) {
-        this.tipoOperacion !== 'igual' && this.calcular();
+        this.tipoOperacion !== 'igual' && this.calcular(); //esto se usa cuando se usa distinto a igual
         this.tipoOperacion = tipo;
         this.valorAnterior = this.valorActual || this.valorAnterior;
         this.valorActual = '';
@@ -41,10 +43,13 @@ class Display {
     }
 
     imprimirValores() {
-        this.displayValorActual.textContent = this.valorActual;
-        this.displayValorAnterior.textContent = `${this.valorAnterior} ${this.signos[this.tipoOperacion] || ''}`;
+        this.displayValorActual.textContent = `${this.valorActual} resultado`;
+        this.displayValorAnterior.textContent = `${this.valorAnterior} ${this.signos[this.tipoOperacion] || 'response'}`;
     }
-
+    entregaMansaje(displayValorActual,displayValorAnterior){
+        displayValorActual.style.color='red';
+        displayValorAnterior.style.color='blue';
+    }
     calcular() {
         const valorAnterior = parseFloat(this.valorAnterior);
         const valorActual = parseFloat(this.valorActual);
